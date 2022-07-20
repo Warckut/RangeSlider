@@ -1,7 +1,17 @@
 import './style.css';
 // const $ = require('jquery')
 import * as $ from 'jquery'
-import RangeSliderView from './RangeSliderView';
+import RangeSliderView from './RangeSlider/RangeSliderView';
+import './RangeSlider/index'
+
+$(".js-range-slider").rangeSlider({
+    stepSize: 1, 
+    orientation: "horizontal",
+    value: 1000,
+    valueAboveSlider: false 
+})
+
+// $('#id').rangeSlider()
 
 // let $rangeInput: JQuery<HTMLElement> = $('.js-range-input input');
 // let $progress: JQuery<HTMLElement> = $('.range-slider__progress');
@@ -26,4 +36,7 @@ import RangeSliderView from './RangeSliderView';
 //     })
 // })
 
-const view = new RangeSliderView()
+// const view = new RangeSliderView()
+
+// $.fn.myPlugin()
+// $('#id').myPlugin()

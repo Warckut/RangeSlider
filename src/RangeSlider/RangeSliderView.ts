@@ -4,18 +4,7 @@ import RangeSliderPresenter from "./RangeSliderPresenter";
 class RangeSliderView {
   $rangeInput: JQuery<HTMLElement>;
   $progress: JQuery<HTMLElement>;
-  // progressBar = () => `
-  //   <div class="progress-bar">
-  //     <div class="progress-bar__diapason"/>
-  //   </div>
-  // `;
 
-  // rangeslider = () => `
-  //   <div class="range-input js-range-input">
-  //     <input type="range" min="0" max="10000" value="2000" class="range-input__min"/>
-  //     <input type="range" min="0" max="10000" value="6500" class="range-input__max"/>
-  //   </div>
-  // `
   template = `
     <div class="progress-bar">
       <div class="progress-bar__diapason"/>
@@ -25,22 +14,18 @@ class RangeSliderView {
       <input type="range" min="0" max="10000" value="6500" class="range-input__max"/>
     </div>
   `
-
   _rangeSliderPresenter: RangeSliderPresenter;
-  // template: string = ""
 
   constructor() {
-    
     this._rangeSliderPresenter = new RangeSliderPresenter(this);
-    // загрузка template
-    $('.js-range-slider').append(this.template)
+  }
+
+  setBinding() {
     this.$rangeInput = $('.js-range-input input');
     this.$progress = $('.progress-bar__diapason');
-    // привязка событий
-    console.log(this._rangeSliderPresenter)
     this.$rangeInput.each((i: number, element: any) => {
-        let $element: JQuery<HTMLElement> = $(element)
-        $element.on("input", this._rangeSliderPresenter.inputHandler.bind(this._rangeSliderPresenter))
+      let $element: JQuery<HTMLElement> = $(element)
+      $element.on("input", this._rangeSliderPresenter.inputHandler.bind(this._rangeSliderPresenter))
     })
   }
 
