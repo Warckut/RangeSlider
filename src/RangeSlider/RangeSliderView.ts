@@ -1,17 +1,18 @@
 import * as $ from 'jquery'
+import { rangeSliderOptions } from '.';
 import RangeSliderPresenter from "./RangeSliderPresenter";
 
 class RangeSliderView {
   $rangeInput: JQuery<HTMLElement>;
   $progress: JQuery<HTMLElement>;
 
-  template = `
+  template = (options: rangeSliderOptions) => `
     <div class="progress-bar">
       <div class="progress-bar__diapason"/>
     </div>
     <div class="range-input js-range-input">
-      <input type="range" min="0" max="10000" value="2000" class="range-input__min"/>
-      <input type="range" min="0" max="10000" value="6500" class="range-input__max"/>
+      <input type="range" min="0" max="10000" value="${options.value[0]}" class="range-input__min"/>
+      <input type="range" min="0" max="10000" value="${options.value[1]}" class="range-input__max"/>
     </div>
   `
   _rangeSliderPresenter: RangeSliderPresenter;

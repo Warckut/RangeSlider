@@ -4,12 +4,22 @@ import * as $ from 'jquery'
 import RangeSliderView from './RangeSlider/RangeSliderView';
 import './RangeSlider/index'
 
-$(".js-range-slider").rangeSlider({
+let $slider = $(".js-range-slider").rangeSlider({
     stepSize: 1, 
     orientation: "horizontal",
-    value: 1000,
+    value: [1000, 2000],
     valueAboveSlider: false 
 })
+$slider.render()
+
+
+
+// $.fn.rangeSlider.options = { 
+//     stepSize: 1,
+//     orientation: 'horizontal',
+//     value: [2500,6000],
+//     valueAboveSlider: false
+// }
 
 // $('#id').rangeSlider()
 

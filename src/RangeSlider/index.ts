@@ -1,31 +1,49 @@
 import * as $ from 'jquery'
 import RangeSliderView from "./RangeSliderView";
 
-export interface MyOptions {
+export interface rangeSliderOptions {
     stepSize: number,
     orientation: "horizontal" | "vertical",
-    value: number | Array<number>,
+    value: Array<number>,
     valueAboveSlider: boolean
 }
 
-// plugin definition
-$.fn.rangeSlider = function(this: JQuery, options: MyOptions): JQuery {
-    function changeValue(value: number | Array<number>): void {
-        // изменение значения
-    }
-    
-    return this.each(function (this: HTMLElement): void {
-        const view = new RangeSliderView()
-        $(this).append(view.template)
-        view.setBinding();
-        // do something
-    });
+interface IChangeValue {
+    (value: number): void;
+}
 
-    // 
+interface IRender {
+    (): JQuery
+}
+
+interface IRangeSlider {
+    (this: JQuery, options: rangeSliderOptions): {
+        changeValue: IChangeValue, 
+        render : IRender
+    };
 }
 
 declare global {
     interface JQuery {
-        rangeSlider(options: MyOptions): this;
+        rangeSlider: IRangeSlider
+    }
+}
+
+$.fn.rangeSlider = function(this: JQuery, options: rangeSliderOptions) {
+    const view = new RangeSliderView()
+    const render = () => {
+        return this.each(function (this: HTMLElement): void {
+            $(this).append(view.template({...options}))
+            view.setBinding();
+        });
+    }
+
+    const changeValue = (value: number) => {
+        // view
+    }
+
+    return {
+        render,
+        changeValue
     }
 }
